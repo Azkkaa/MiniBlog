@@ -11,7 +11,6 @@ This project focuses on implementing SPA behavior in React, where page transitio
 ### Backend
 
 - Laravel 12
-- RESTful API
 - Resource Controller
 - API Resource
 - MySQL
@@ -26,9 +25,13 @@ This project focuses on implementing SPA behavior in React, where page transitio
 
 ## 📌 Current Feature
 
-- Display list of posts from Laravel API
-
-Upcoming features will be developed incrementally in future commits.
+- [x] List Post
+- [ ] Detail Post
+- [ ] Filter by Category
+- [ ] Show Author
+- [ ] Loading state for all pages
+- [ ] Pagination
+- [ ] Search
 
 ---
 
@@ -77,7 +80,7 @@ php artisan migrate --seed
 php artisan serve
 ```
 
-Backend will run at: `http://localhost:8000`
+_Better use local server to run the backend_
 
 ---
 
@@ -97,7 +100,7 @@ Frontend will run at: `http://localhost:5173`
 
 ## 🔗 API Endpoint Example
 
-`GET /api/posts`
+`GET /api/post`
 
 Example response:
 
