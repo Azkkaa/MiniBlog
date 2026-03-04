@@ -20,12 +20,12 @@ route::get('/dashboard', function() {
     ], 200);
 });
 
-Route::prefix('/post')->group(function () {
+Route::prefix('/posts')->group(function () {
     Route::get('/', [PostController::class, 'index']);
     Route::get('/{hashIdPost}', [PostController::class, 'show']);
 });
 
-Route::prefix('/category')->group(function () {
+Route::prefix('/categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index']);
     Route::get('/{category}/post', [CategoryController::class, 'show']);
 });

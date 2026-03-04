@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
             return response()->json([
                 'message' => 'Getting Categories Data',
-                'data' => CategoryIndexResource::collection($categories)
+                'resources' => CategoryIndexResource::collection($categories)
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -55,7 +55,7 @@ class CategoryController extends Controller
 
             return response()->json([
                 'message' => 'Getting Category Post Data',
-                'data' => new CategoryShowResource($category)
+                'resources' => new CategoryShowResource($category)
             ]);
         } catch (\Exception $e) {
             return response()->json([

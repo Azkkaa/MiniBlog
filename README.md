@@ -26,10 +26,10 @@ This project focuses on implementing SPA behavior in React, where page transitio
 ## 📌 Current Feature
 
 - [x] List Post
+- [x] List Category
 - [ ] Detail Post
-- [ ] Filter by Category
-- [ ] Show Author
-- [ ] Loading state for all pages
+- [ ] Show Post by Category
+- [ ] Show Post by Author
 - [ ] Pagination
 - [ ] Search
 
