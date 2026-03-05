@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Text from '@/utils/Text.js';
 import axios from 'axios';
-import { SpinnerGapIcon } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
+import LoadingState from '@/componets/LoadingState.jsx';
 
 function Post () {
     const [posts, setPosts] = useState([]);
@@ -28,23 +28,22 @@ return (
       </header>
 
       <div>
+        {/* Loading State */}
         {isLoading && (
-          <div className='flex justify-center items-center py-20'>
-            <div className='bg-blue-50 p-2 rounded-lg'>
-              <SpinnerGapIcon size={43} className="animate-spin text-blue-600 text-center" weight='bold'/>
-            </div>
-          </div>
+          <LoadingState />
         )}
+
+        {/* Post List */}
         {posts.map((post) => (
           <div key={post.id} className='p-5 border-t border-gray-500'>
             <h2 className='text-lg font-semibold'>{post.title}</h2>
 
-            <p className='text-gray-600 mt-2'>
+            <p className='text-gray-600 mt-1'>
               {Text.prototype.limitText(post.content, 130)}
-              <Link to={`/post/${post.id}`} className='text-blue-600 hover:underline ml-2'>Read More</Link>
+              <Link to={`/post/${post.id}`} className='text-blue-600 hover:underline ml-1'>Read More</Link>
             </p>
 
-            <div className='flex justify-end mt-2'>
+            <div className='mt-3'>
               <p className='text-gray-600 mr-2'>Author :
                 <Link to={`/user/${post.relations.user.id}`} className='text-blue-600 hover:underline ml-1'>{post.relations.user.name}</Link>
               </p>

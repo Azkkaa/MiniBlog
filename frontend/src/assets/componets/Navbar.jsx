@@ -24,10 +24,10 @@ const Navbar = () => {
             <Link to="/" className={`${isActive('/')} transition-colors`}>
               Dashboard
             </Link>
-            <Link to="/post" className={`${isActive('/post')} transition-colors`}>
+            <Link to="/posts" className={`${isActive('/posts')} transition-colors`}>
               Posts
             </Link>
-            <Link to="/category" className={`${isActive('/category')} transition-colors`}>
+            <Link to="/categories" className={`${isActive('/categories')} transition-colors`}>
               Categories
             </Link>
           </div>
