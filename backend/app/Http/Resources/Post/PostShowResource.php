@@ -17,7 +17,11 @@ class PostShowResource extends JsonResource
         return [
             'id' => $this->hashid,
             'title' => $this->title,
-            'content' => $this->content
+            'content' => $this->content,
+            'user' => [
+                'name' => $this->user->name,
+                'email' => $this->user->email
+            ],
         ];
     }
 }

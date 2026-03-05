@@ -20,17 +20,17 @@ route::get('/dashboard', function() {
     ], 200);
 });
 
-Route::prefix('/posts')->group(function () {
+Route::prefix('/post')->group(function () {
     Route::get('/', [PostController::class, 'index']);
     Route::get('/{hashIdPost}', [PostController::class, 'show']);
 });
 
-Route::prefix('/categories')->group(function () {
+Route::prefix('/category')->group(function () {
     Route::get('/', [CategoryController::class, 'index']);
     Route::get('/{category}/post', [CategoryController::class, 'show']);
 });
 
-Route::prefix('user')->group(function () {
+Route::prefix('author')->group(function () {
     Route::get('', [UserController::class, 'index']);
     Route::get('{hashIdUser}/post', [UserController::class, 'show']);
 });

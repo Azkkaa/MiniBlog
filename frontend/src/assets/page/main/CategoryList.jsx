@@ -7,7 +7,7 @@ const CategoryList = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const route = 'http://localhost:8000/api/categories';
+  const route = 'http://localhost:8000/api/category';
 
   useEffect(() => {
     axios.get(route)

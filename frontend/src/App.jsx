@@ -4,6 +4,7 @@ import Navbar from './assets/componets/Navbar.jsx';
 import PostList from './assets/page/main/PostList.jsx';
 import CategoryList from './assets/page/main/CategoryList.jsx';
 import CategoryShow from './assets/page/show/CategoryShow.jsx';
+import PostShow from './assets/page/show/Post.jsx';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/posts" element={<PostList />} />
             <Route path="/categories" element={<CategoryList />} />
             <Route path="/category/:category" element={<CategoryShow />} />
+            <Route path="/post/:id" element={<PostShow />} />
           </Routes>
         </main>
       </div>

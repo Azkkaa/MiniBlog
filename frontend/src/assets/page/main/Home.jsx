@@ -46,7 +46,7 @@ const Home = () => {
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-5 border-b border-gray-50 items-center">
-          <Link to="/post" className="text-2xl text-blue-500 hover:text-blue-700 hover:underline font-bold m-auto">
+          <Link to="/posts" className="text-2xl text-blue-500 hover:text-blue-700 hover:underline font-bold m-auto">
             See All Post →
           </Link>
         </div>

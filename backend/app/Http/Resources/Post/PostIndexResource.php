@@ -20,7 +20,7 @@ class PostIndexResource extends JsonResource
             'content' => $this->content,
             'relations' => [
                 'user' => [
-                    'id' => $this->hashid,
+                    'id' => $this->user->hashid,
                     'name' => $this->user->name,
                     'email' => $this->user->email
                 ],

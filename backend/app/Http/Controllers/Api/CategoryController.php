@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
         try {
             $category = Category::where('slug', '=', $request->route('category'))
-                ->with('posts')
+                ->with('posts.user')
                 ->first();
             if (!$category) {
                 return response()->json([
@@ -56,7 +56,7 @@ class CategoryController extends Controller
             return response()->json([
                 'message' => 'Getting Category Post Data',
                 'resources' => new CategoryShowResource($category)
-            ]);
+            ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Server Error',

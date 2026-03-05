@@ -54,7 +54,7 @@ class PostController extends Controller
 
             return response()->json([
                 'message' => 'Getting Post Data',
-                'data' => new PostShowResource($posts)
+                'resources' => new PostIndexResource($posts)
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

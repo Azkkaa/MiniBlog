@@ -11,10 +11,10 @@ const CategoryShow = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/categories/${category}/post`)
+        axios.get(`http://localhost:8000/api/category/${category}/post`)
         .then((res) => {
             setIsLoading(false);
-            setPosts(res.data.resources.posts);
+          setPosts(res.data.resources.posts);
         })
         .catch((err) => {
             console.log(err);
