@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Text from '@/utils/Text.js';
 import { Link } from 'react-router-dom';
 import LoadingState from '@/componets/LoadingState.jsx';
 

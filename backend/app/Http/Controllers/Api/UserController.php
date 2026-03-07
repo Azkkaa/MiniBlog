@@ -43,7 +43,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'Getting User Post Data',
-            'data' => new UserShowResource($user)
+            'resources' => new UserShowResource($user)
         ]);
     }
 

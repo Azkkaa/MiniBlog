@@ -5,6 +5,7 @@ import PostList from './assets/page/main/PostList.jsx';
 import CategoryList from './assets/page/main/CategoryList.jsx';
 import CategoryShow from './assets/page/show/CategoryShow.jsx';
 import PostShow from './assets/page/show/Post.jsx';
+import AuthorShow from './assets/page/show/AuthorShow.jsx';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/categories" element={<CategoryList />} />
             <Route path="/category/:category" element={<CategoryShow />} />
             <Route path="/post/:id" element={<PostShow />} />
+            <Route path="/author/:id" element={<AuthorShow />} />
           </Routes>
         </main>
       </div>

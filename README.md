@@ -29,7 +29,7 @@ This project focuses on implementing SPA behavior in React, where page transitio
 - [x] List Category
 - [x] Show Post by Category
 - [x] Detail Post
-- [ ] Show Post by Author
+- [x] Show Post by Author
 - [ ] Pagination
 - [ ] Search
 
