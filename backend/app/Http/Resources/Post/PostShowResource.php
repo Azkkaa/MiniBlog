@@ -4,6 +4,7 @@ namespace App\Http\Resources\Post;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class PostShowResource extends JsonResource
 {
@@ -17,7 +18,7 @@ class PostShowResource extends JsonResource
         return [
             'id' => $this->hashid,
             'title' => $this->title,
-            'content' => $this->content,
+            'content' => Str::limit($this->content, 100),
             'user' => [
                 'name' => $this->user->name,
                 'email' => $this->user->email

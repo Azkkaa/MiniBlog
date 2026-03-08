@@ -7,18 +7,15 @@ import LoadingState from '@/componets/LoadingState.jsx';
 
 const CategoryShow = () => {
     const { category } = useParams();
-    const [posts, setPosts] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [posts, setPosts] = useState(null);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/category/${category}/post`)
         .then((res) => {
-            setIsLoading(false);
           setPosts(res.data.resources.posts);
         })
         .catch((err) => {
-            console.log(err);
-            setIsLoading(false);
+          console.log(err);
         })
     }, []);
 
@@ -30,21 +27,23 @@ const CategoryShow = () => {
                 </header>
 
                 <div>
-                    {/* Loading State */}
-                    {isLoading && (
-                        <LoadingState />
-                    )}
-                    {/* Post List */}
-                    {posts.map((post) => (
-                        <div key={post.id} className='p-5 border-t border-gray-500'>
-                            <h2 className='text-lg font-semibold'>{post.title}</h2>
+                    {posts ? (
+                      <>
+                        {posts.map((post) => (
+                          <div key={post.id} className='p-5 border-t border-gray-500'>
+                              <h2 className='text-lg font-semibold'>{post.title}</h2>
 
-                            <p className='text-gray-600 mt-2'>
-                                {Text.prototype.limitText(post.content, 130)}
-                                <Link to={`/post/${post.id}`} className='text-blue-600 hover:underline ml-2'>Read More</Link>
-                            </p>
-                        </div>
-                    ))}
+                              <p className='text-gray-600 mt-1'>
+                                  {post.content}
+                                  <Link to={`/post/${post.id}`} className='text-blue-600 hover:underline ml-2'>Read More</Link>
+                              </p>
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <LoadingState />
+                    )
+                    }
                 </div>
             </div>
         </div>

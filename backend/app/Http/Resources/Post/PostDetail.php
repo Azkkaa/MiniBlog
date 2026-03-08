@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources\Post;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostIndexResource extends JsonResource
+class PostDetail extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +17,7 @@ class PostIndexResource extends JsonResource
         return [
             'id' => $this->hashid,
             'title' => $this->title,
-            'content' => Str::limit($this->content, 100),
+            'content' => $this->content,
             'relations' => [
                 'user' => [
                     'id' => $this->user->hashid,

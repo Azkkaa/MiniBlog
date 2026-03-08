@@ -4,8 +4,7 @@ import axios from 'axios'
 import LoadingState from '@/componets/LoadingState.jsx';
 
 const CategoryList = () => {
-  const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [categories, setCategories] = useState(null);
 
   const route = 'http://localhost:8000/api/category';
 
@@ -13,11 +12,9 @@ const CategoryList = () => {
     axios.get(route)
     .then((res) => {
       setCategories(res.data.resources);
-      setIsLoading(false);
     })
     .catch((err) => {
       console.log(err);
-      setIsLoading(false);
     })
   }, []);
 
@@ -30,18 +27,21 @@ const CategoryList = () => {
         </header>
 
         {/* Loading State */}
-        {isLoading && (
+        {categories ?
+        (
+          <>
+            {/* Category List */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-10 px-7 pt-7">
+              {categories.map((category) => (
+                <Link to={`/category/${category.slug}/posts`} key={category.slug} className="bg-blue-100 p-3 text-center rounded-xl shadow-sm hover:bg-blue-300 transition-all text-gray-900 duration-100 hover:text-black">
+                  <p className="text-sm font-bold uppercase">{category.name}</p>
+                </Link>
+              ))}
+            </div>
+          </>
+        ) : (
           <LoadingState />
         )}
-
-        {/* Category List */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-10 px-7 pt-7">
-          {!isLoading && categories.map((category) => (
-            <Link to={`/category/${category.slug}`} key={category.slug} className="bg-blue-100 p-3 text-center rounded-xl shadow-sm hover:bg-blue-300 transition-all text-gray-900 duration-100 hover:text-black">
-              <p className="text-sm font-bold uppercase">{category.name}</p>
-            </Link>
-          ))}
-        </div>
       </div>
     </div>
   );

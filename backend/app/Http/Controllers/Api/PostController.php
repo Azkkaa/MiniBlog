@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Post\PostDetail;
 use App\Http\Resources\Post\PostIndexResource;
-use App\Http\Resources\Post\PostShowResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -13,14 +13,22 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $posts = Post::with(['user', 'category'])->get();
+            $queryRelation = Post::with(['user', 'category']);
+            $page = $request->query('page', 1);
+
+            $posts = $queryRelation->latest()
+                ->skip(($page - 1) * 10)
+                ->take(10)
+                ->get();
 
             return response()->json([
                 'message' => 'Getting posts data',
-                'resources' => PostIndexResource::collection($posts)
+                'resources' => PostIndexResource::collection($posts),
+                'page' => $page,
+                'total' => Post::count()
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -54,7 +62,7 @@ class PostController extends Controller
 
             return response()->json([
                 'message' => 'Getting Post Data',
-                'resources' => new PostIndexResource($posts)
+                'resources' => new PostDetail($posts)
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

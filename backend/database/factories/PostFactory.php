@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'user_id' => User::inRandomOrder()->first()->id,
             'category_id' => Category::inRandomOrder()->first()->id,
             'title' => $this->faker->sentence(4),
-            'content' => $this->faker->paragraph(6)
+            'content' => $this->faker->paragraph(15)
         ];
     }
 }

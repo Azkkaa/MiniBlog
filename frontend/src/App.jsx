@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './assets/page/main/Home.jsx';
 import Navbar from './assets/componets/Navbar.jsx';
 import PostList from './assets/page/main/PostList.jsx';
 import CategoryList from './assets/page/main/CategoryList.jsx';
 import CategoryShow from './assets/page/show/CategoryShow.jsx';
-import PostShow from './assets/page/show/Post.jsx';
+import PostDetail from './assets/page/show/PostDetail.jsx';
 import AuthorShow from './assets/page/show/AuthorShow.jsx';
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/posts" element={<PostList />} />
             <Route path="/categories" element={<CategoryList />} />
-            <Route path="/category/:category" element={<CategoryShow />} />
-            <Route path="/post/:id" element={<PostShow />} />
-            <Route path="/author/:id" element={<AuthorShow />} />
+            <Route path="/category/:category/posts" element={<CategoryShow />} />
+            <Route path="/author/:id/posts" element={<AuthorShow />} />
+            <Route path="/post/:id" element={<PostDetail />} />
           </Routes>
         </main>
       </div>
