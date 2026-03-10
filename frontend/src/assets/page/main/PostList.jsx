@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useSearchParams } from 'react-router-dom';
-import LoadingState from '@/componets/LoadingState.jsx';
-import Pagination from '@/componets/Pagination.jsx';
+import LoadingState from '@/components/LoadingState.jsx';
+import Pagination from '@/components/Pagination.jsx';
 
 function PostList () {
   const [posts, setPosts] = useState([]);
@@ -10,6 +10,7 @@ function PostList () {
   const [searchParams] = useSearchParams()
   const page = parseInt(searchParams.get('page')) || 1
   const route = !page ? 'http://localhost:8000/api/post' : `http://localhost:8000/api/post?page=${page}`;
+  const totalPosts = data?.total || '-';
 
   useEffect(() => {
     posts.length > 0 && setPosts([])
@@ -29,6 +30,7 @@ function PostList () {
       <div className='bg-white text-gray-900'>
         <header className='mt-10 p-7'>
           <h1 className='text-[26px] font-bold underline underline-offset-2'>Post Page</h1>
+          <p className='text-sm italic font-medium text-gray-500'>Total of <span className='font-bold text-gray-700'>{totalPosts}</span> Post</p>
         </header>
 
         <div>
@@ -59,7 +61,7 @@ function PostList () {
               <div className='h-5 w-full bg-gray-200'/>
 
               {/* Pagination */}
-              <Pagination currentPage={page} totalPages={Math.floor(data.total / 10)} />
+              <Pagination currentPage={page} totalPages={Math.ceil(data.total / 10)} route="/posts"/>
             </>
             ) : (
               <LoadingState />

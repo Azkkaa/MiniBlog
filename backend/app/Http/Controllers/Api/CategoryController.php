@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Category\CategoryIndexResource;
-use App\Http\Resources\Category\CategoryShowResource;
+use App\Http\Resources\Category\CategoryPostResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,11 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Server Error',
-                'error' => $e->getMessage()
+                'error' => [
+                  'message' => $e->getMessage(),
+                  'line' => $e->getLine(),
+                  'file' => $e->getFile(),
+                ]
             ], 500);
         }
     }
@@ -44,9 +48,18 @@ class CategoryController extends Controller
     public function show(Request $request)
     {
         try {
-            $category = Category::where('slug', '=', $request->route('category'))
-                ->with('posts.user')
+            $page = $request->query('page', 1);
+
+            $categoryQuery = Category::where('slug', '=', $request->route('category'));
+
+            $category = $categoryQuery->with(['posts' => function ($query) use ($page) {
+                    $query->with('user')
+                        ->latest()
+                        ->skip(($page - 1) * 10)
+                        ->take(10);
+                }])
                 ->first();
+
             if (!$category) {
                 return response()->json([
                     'message' => 'Data Not Found!!',
@@ -55,12 +68,18 @@ class CategoryController extends Controller
 
             return response()->json([
                 'message' => 'Getting Category Post Data',
-                'resources' => new CategoryShowResource($category)
+                'resources' => new CategoryPostResource($category),
+                'page' => $page,
+                'total' => $categoryQuery->withCount('posts')->first()->posts_count
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Server Error',
-                'error' => $e->getMessage()
+                'error' => [
+                    'message' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'file' => $e->getFile(),
+                ]
             ], 500);
         }
     }

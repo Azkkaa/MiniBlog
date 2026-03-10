@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowSquareLeftIcon, ArrowSquareRightIcon } from '@phosphor-icons/react'
 
-function Pagination({ currentPage, totalPages }) {
+function Pagination({ currentPage, totalPages, route }) {
   const prev = [];
   const next = [];
 
@@ -19,14 +19,14 @@ function Pagination({ currentPage, totalPages }) {
 
   return (
     <>
-      <div className="flex justify-center py-4">
+      <div className="flex justify-center flex-col items-center pt-4 pb-3">
         <div className="flex gap-2">
-          <Link to={`/posts?page=${currentPage - 1}`}
+          <Link to={`${route}?page=${currentPage - 1}`}
           className="p-1 text-gray-600 hover:text-blue-500 flex justify-center items-center border border-gray-600 hover:border-blue-500 rounded transition-colors duration-200">
             <ArrowSquareLeftIcon size={32} />
           </Link>
           {prev.map((page) => (
-            <Link key={page} to={`/posts?page=${page}`}
+            <Link key={page} to={`${route}?page=${page}`}
             className="px-3 py-2 border border-gray-400 hover:border-blue-500 hover:text-blue-500 rounded transition-colors duration-200">
               {page}
             </Link>
@@ -35,16 +35,19 @@ function Pagination({ currentPage, totalPages }) {
             {currentPage}
           </div>
           {next.map((page) => (
-            <Link key={page} to={`/posts?page=${page}`}
+            <Link key={page} to={`${route}?page=${page}`}
             className="px-3 py-2 border border-gray-400 hover:border-blue-500 hover:text-blue-500 rounded transition-colors duration-200">
               {page}
             </Link>
           ))}
-          <Link to={`/posts?page=${currentPage + 1}`}
+          <Link to={`${route}?page=${currentPage + 1}`}
           className="p-1 flex text-gray-600 hover:text-blue-500 justify-center items-center border border-gray-600 hover:border-blue-500 rounded transition-colors duration-200">
             <ArrowSquareRightIcon size={32} />
           </Link>
         </div>
+        <div className='flex items-center gap-2'>
+            <p className='text-gray-600 font-medium mt-2'>Page {currentPage} of {totalPages}</p>
+          </div>
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import LoadingState from '@/componets/LoadingState.jsx';
+import LoadingState from '@/components/LoadingState.jsx';
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -31,7 +31,7 @@ const PostDetail = () => {
                 <div key={post.id} className='p-5 border-t border-gray-500'>
                   <h2 className='text-3xl font-bold'>{post.title}</h2>
 
-                  <p className='my-4 font-semibold'>
+                  <p className='my-4 font-semibold p-2'>
                       {post.content}
                   </p>
 
@@ -40,7 +40,7 @@ const PostDetail = () => {
                       Author : 
                       <Link to={`/author/${post.relations.user.id}/posts`} className='text-blue-600 hover:underline ml-2'>{post.relations.user.name}</Link>
                     </p>
-                    <p>
+                    <p className='mr-4'>
                       Category : 
                       <Link to={`/category/${post.relations.category.slug}/posts`} className='text-blue-600 hover:underline ml-2'>{post.relations.category.name}</Link>
                     </p>

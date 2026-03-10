@@ -33,7 +33,11 @@ class PostController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Server Error',
-                'error' => $e->getMessage()
+                'error' => [
+                    'message' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'file' => $e->getFile(),
+                ]
             ], 500);
         }
     }
@@ -67,7 +71,11 @@ class PostController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Server Error',
-                'error' => $e->getMessage()
+                'error' => [
+                    'message' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'file' => $e->getFile(),
+                ]
             ], 500);
         }
     }

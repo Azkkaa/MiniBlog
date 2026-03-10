@@ -33,18 +33,39 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        $user = User::with('posts')->findByHashid($request->route('hashIdUser'));
+        try {
+            $page = $request->query('page', 1);
 
-        if (!$user) {
+            $user = User::with(['posts' => function ($query) use ($page) {
+                        $query->with('category')
+                            ->latest()
+                            ->skip(($page - 1) * 10)
+                            ->take(10);
+                    }])
+                ->findByHashid($request->route('hashIdUser'));
+
+            if (!$user) {
+                return response()->json([
+                    'message' => 'Data Not Found!!'
+                ], 404);
+            }
+
             return response()->json([
-                'message' => 'Data Not Found!!'
-            ], 404);
+                'message' => 'Getting User Post Data',
+                'resources' => new UserShowResource($user),
+                'page' => $page,
+                'total' => $user->posts()->count()
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Server Error',
+                'error' => [
+                    'message' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'file' => $e->getFile(),
+                ]
+            ], 500);
         }
-
-        return response()->json([
-            'message' => 'Getting User Post Data',
-            'resources' => new UserShowResource($user)
-        ]);
     }
 
     /**

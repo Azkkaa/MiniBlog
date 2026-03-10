@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
-class PostShowResource extends JsonResource
+class PostCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,9 +20,10 @@ class PostShowResource extends JsonResource
             'title' => $this->title,
             'content' => Str::limit($this->content, 100),
             'user' => [
+              'id' => $this->user->hashid,
+              'email' => $this->user->email,
                 'name' => $this->user->name,
-                'email' => $this->user->email
-            ],
+            ]
         ];
     }
 }

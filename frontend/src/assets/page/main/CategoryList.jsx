@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import LoadingState from '@/componets/LoadingState.jsx';
+import LoadingState from '@/components/LoadingState.jsx';
 
 const CategoryList = () => {
   const [categories, setCategories] = useState(null);
