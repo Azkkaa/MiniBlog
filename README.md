@@ -81,7 +81,7 @@ php artisan migrate --seed
 php artisan serve
 ```
 
-_Better use local server to run the backend_
+Backend will run at: `http://localhost:8000`
 
 ---
 
