@@ -2,13 +2,18 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\User;
+
 route::get('/dashboard', function() {
-    $totalPosts = \App\Models\Post::count();
-    $totalCategories = \App\Models\Category::count();
-    $totalUsers = \App\Models\User::count();
+    $totalPosts = Post::count();
+    $totalCategories = Category::count();
+    $totalUsers = User::count();
 
     return response()->json([
         'message' => 'Getting First Page Data',
@@ -34,3 +39,5 @@ Route::prefix('author')->group(function () {
     Route::get('', [UserController::class, 'index']);
     Route::get('{hashIdUser}/post', [UserController::class, 'show']);
 });
+
+Route::get('search', [SearchController::class, 'index']);

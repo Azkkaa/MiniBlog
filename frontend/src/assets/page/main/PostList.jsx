@@ -7,30 +7,36 @@ import Pagination from '@/components/Pagination.jsx';
 function PostList () {
   const [posts, setPosts] = useState([]);
   const [data, setData] = useState(null);
-  const [searchParams] = useSearchParams()
-  const page = parseInt(searchParams.get('page')) || 1
+  const [searchParams] = useSearchParams();
+  const page = parseInt(searchParams.get('page')) || 1;
   const route = !page ? 'http://localhost:8000/api/post' : `http://localhost:8000/api/post?page=${page}`;
   const totalPosts = data?.total || '-';
 
-  useEffect(() => {
-    posts.length > 0 && setPosts([])
-
+  const gettingData = () => {
     axios.get(route)
     .then((res) => {
-        setPosts(res.data.resources);
-        setData(res.data);
-      })
-      .catch((err) => {
-          console.log(err);
-      })
+      setPosts(res.data.resources);
+      setData(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  useEffect(() => {
+    posts.length > 0 && setPosts([]);
+
+    gettingData();
   }, [page]);
 
   return (
     <div className='pt-[65px] bg-gray-200 min-h-screen px-5 pb-10'>
       <div className='bg-white text-gray-900'>
-        <header className='mt-10 p-7'>
-          <h1 className='text-[26px] font-bold underline underline-offset-2'>Post Page</h1>
-          <p className='text-sm italic font-medium text-gray-500'>Total of <span className='font-bold text-gray-700'>{totalPosts}</span> Post</p>
+        <header className='mt-10 p-7 flex justify-between items-center'>
+          <div>
+            <h1 className='text-[26px] font-bold underline underline-offset-2'>Post Page</h1>
+            <p className='text-sm italic font-medium text-gray-500'>Total of <span className='font-bold text-gray-700'>{totalPosts}</span> Post</p>
+          </div>
         </header>
 
         <div>

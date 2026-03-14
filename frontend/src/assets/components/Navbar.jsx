@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CrosshairIcon } from '@phosphor-icons/react';
+import { CrosshairIcon, MagnifyingGlassIcon } from '@phosphor-icons/react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,15 +20,28 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className={`${isActive('/')} transition-colors`}>
+          <div className="hidden md:flex items-center space-x-7">
+            <Link
+              to="/" 
+              className={`${isActive('/')} transition-colors`}>
               Dashboard
             </Link>
-            <Link to="/posts" className={`${isActive('/posts')} transition-colors`}>
+            <Link
+              to="/posts" 
+              className={`${isActive('/posts')} transition-colors`}>
               Posts
             </Link>
-            <Link to="/categories" className={`${isActive('/categories')} transition-colors`}>
+            <Link
+              to="/categories" 
+              className={`${isActive('/categories')} transition-colors`}>
               Categories
+            </Link>
+            <Link
+              to="/search" 
+              onClick={() => setIsOpen(false)}
+              className={`${isActive('/search')} transition-colors`}
+            >
+              <MagnifyingGlassIcon size={22} weight='bold'/>
             </Link>
           </div>
 
@@ -73,6 +86,14 @@ const Navbar = () => {
               className={`block px-3 py-2 rounded-md text-base ${isActive('/categories')}`}
             >
               Categories
+            </Link>
+            <div className='h-5 w-full bg-gray-200'/>
+            <Link
+              to="/search" 
+              onClick={() => setIsOpen(false)}
+              className={`block px-3 py-2 rounded-md text-base ${isActive('/search')}`}
+            >
+              Search
             </Link>
           </div>
         </div>

@@ -6,11 +6,12 @@ import CategoryList from './assets/page/main/CategoryList.jsx';
 import CategoryPostShow from './assets/page/show/CategoryPostShow.jsx';
 import PostDetail from './assets/page/show/PostDetail.jsx';
 import AuthorPostShow from './assets/page/show/AuthorPostShow.jsx';
+import SearchPage from './assets/page/main/Search.jsx';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-200">
         <Navbar />
 
         <main>
@@ -21,6 +22,7 @@ function App() {
             <Route path="/category/:category/posts" element={<CategoryPostShow />} />
             <Route path="/author/:id/posts" element={<AuthorPostShow />} />
             <Route path="/post/:id" element={<PostDetail />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
         </main>
       </div>
