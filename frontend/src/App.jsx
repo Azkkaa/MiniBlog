@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './assets/page/main/Home.jsx';
+import Home from './assets/pages/main/Home.jsx';
 import Navbar from './assets/components/Navbar.jsx';
-import PostList from './assets/page/main/PostList.jsx';
-import CategoryList from './assets/page/main/CategoryList.jsx';
-import CategoryPostShow from './assets/page/show/CategoryPostShow.jsx';
-import PostDetail from './assets/page/show/PostDetail.jsx';
-import AuthorPostShow from './assets/page/show/AuthorPostShow.jsx';
-import SearchPage from './assets/page/main/Search.jsx';
+import PostList from './assets/pages/main/PostList.jsx';
+import CategoryList from './assets/pages/main/CategoryList.jsx';
+import CategoryPostShow from './assets/pages/show/CategoryPostShow.jsx';
+import PostDetail from './assets/pages/show/PostDetail.jsx';
+import AuthorPostShow from './assets/pages/show/AuthorPostShow.jsx';
+import SearchPage from './assets/pages/main/Search.jsx';
 
 function App() {
   return (
