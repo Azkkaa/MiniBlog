@@ -7,6 +7,7 @@ use App\Http\Resources\Category\CategoryIndexResource;
 use App\Http\Resources\Category\CategoryPostResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -49,8 +50,9 @@ class CategoryController extends Controller
     {
         try {
             $page = $request->query('page', 1);
+            $categoryName = $request->route('category');
 
-            $categoryQuery = Category::where('slug', '=', $request->route('category'));
+            $categoryQuery = Category::where('slug', '=', $categoryName);
 
             $category = $categoryQuery->with(['posts' => function ($query) use ($page) {
                     $query->with('user')
@@ -61,8 +63,15 @@ class CategoryController extends Controller
                 ->first();
 
             if (!$category) {
+                $categoryNameCapitalized = Str::ucfirst($categoryName);
                 return response()->json([
-                    'message' => 'Data Not Found!!',
+                    'message' => "Category $categoryNameCapitalized Not Found!!",
+                ], 404);
+            }
+
+            if ($category->posts->count() == 0) {
+                return response()->json([
+                    'message' => 'The Category has no posts or eather the page is empty!!'
                 ], 404);
             }
 
@@ -71,7 +80,7 @@ class CategoryController extends Controller
                 'resources' => new CategoryPostResource($category),
                 'page' => $page,
                 'total' => $categoryQuery->withCount('posts')->first()->posts_count
-            ], 200);
+              ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Server Error',

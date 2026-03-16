@@ -32,7 +32,8 @@ This project focuses on implementing SPA behavior in React, where page transitio
 - [x] Show Post by Author
 - [x] Pagination for all list data
 - [x] Search Page
-- [ ] Error Handling for HTTP Response Status Code
+- [x] Error Handling for HTTP Response Status Code
+- [x] Responsive Design
 
 ---
 

@@ -24,6 +24,12 @@ class PostController extends Controller
                 ->take(10)
                 ->get();
 
+            if ($posts->isEmpty()) {
+                return response()->json([
+                    'message' => 'No posts found or either the page is empty!!'
+                ], 404);
+            }
+
             return response()->json([
                 'message' => 'Getting posts data',
                 'resources' => PostIndexResource::collection($posts),
@@ -60,7 +66,7 @@ class PostController extends Controller
 
             if (!$posts) {
                 return response()->json([
-                    'message' => 'Data Not Found!!'
+                    'message' => 'Post Not Found!!'
                 ], 404);
             }
 

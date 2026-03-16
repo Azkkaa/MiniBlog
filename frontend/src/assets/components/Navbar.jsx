@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CrosshairIcon, MagnifyingGlassIcon } from '@phosphor-icons/react';
 
@@ -15,8 +15,8 @@ const Navbar = () => {
 
           <div className="flex items-center justify-center">
             <Link to="/" className="text-2xl font-bold text-gray-800">
-              <CrosshairIcon size={32} className="inline-block mr-2 text-blue-600" />
-              MiniBlog
+              <CrosshairIcon className="inline-block mr-2 text-blue-600 text-[28px] md:text-[32px]" />
+              <span className='text-xl md:text-2xl'>MiniBlog</span>
             </Link>
           </div>
 
@@ -87,13 +87,12 @@ const Navbar = () => {
             >
               Categories
             </Link>
-            <div className='h-5 w-full bg-gray-200'/>
             <Link
               to="/search" 
               onClick={() => setIsOpen(false)}
-              className={`block px-3 py-2 rounded-md text-base ${isActive('/search')}`}
+              className={`block px-3 py-2 rounded-md text-base ${isActive('/search')} flex items-center justify-center`}
             >
-              Search
+              <MagnifyingGlassIcon size={22} weight='bold'/> <span className='ml-2'>Search</span>
             </Link>
           </div>
         </div>

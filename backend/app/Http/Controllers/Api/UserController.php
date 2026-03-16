@@ -46,12 +46,18 @@ class UserController extends Controller
 
             if (!$user) {
                 return response()->json([
-                    'message' => 'Data Not Found!!'
+                    'message' => 'Author Not Found!!'
+                ], 404);
+            }
+
+            if ($user->posts->count() == 0) {
+                return response()->json([
+                    'message' => 'The Author has no posts or eather the page is empty!!'
                 ], 404);
             }
 
             return response()->json([
-                'message' => 'Getting User Post Data',
+                'message' => 'Getting Author Post Data',
                 'resources' => new UserShowResource($user),
                 'page' => $page,
                 'total' => $user->posts()->count()

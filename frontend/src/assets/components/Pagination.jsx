@@ -20,11 +20,17 @@ function Pagination({ currentPage, totalPages, route }) {
   return (
     <>
       <div className="flex justify-center flex-col items-center pt-4 pb-3">
-        <div className="flex gap-2">
-          <Link to={`${route}?page=${currentPage - 1}`}
-          className="p-1 text-gray-600 hover:text-blue-500 flex justify-center items-center border border-gray-600 hover:border-blue-500 rounded transition-colors duration-200">
-            <ArrowSquareLeftIcon size={32} />
-          </Link>
+        <div className="flex gap-2 text-sm md:text-base">
+          {currentPage <= 1 ? (
+            <div className="p-0.5 md:p-1 flex text-gray-600 cursor-not-allowed justify-center items-center border border-gray-600 rounded">
+              <ArrowSquareLeftIcon size={27} />
+            </div>
+          ) : (
+            <Link to={`${route}?page=${currentPage - 1}`}
+            className="p-0.5 md:p-1 text-black hover:text-blue-500 flex justify-center items-center border border-black hover:border-blue-500 rounded transition-colors duration-200">
+              <ArrowSquareLeftIcon size={27} />
+            </Link>
+          )}
           {prev.map((page) => (
             <Link key={page} to={`${route}?page=${page}`}
             className="px-3 py-2 border border-gray-400 hover:border-blue-500 hover:text-blue-500 rounded transition-colors duration-200">
@@ -40,13 +46,20 @@ function Pagination({ currentPage, totalPages, route }) {
               {page}
             </Link>
           ))}
-          <Link to={`${route}?page=${currentPage + 1}`}
-          className="p-1 flex text-gray-600 hover:text-blue-500 justify-center items-center border border-gray-600 hover:border-blue-500 rounded transition-colors duration-200">
-            <ArrowSquareRightIcon size={32} />
-          </Link>
+          {currentPage >= totalPages ? (
+            <div className="p-0.5 md:p-1 flex text-gray-600 cursor-not-allowed justify-center items-center border border-gray-600 rounded">
+              <ArrowSquareRightIcon size={27} />
+            </div>
+          ) : (
+            <Link to={`${route}?page=${currentPage + 1}`}
+              className="p-0.5 md:p-1 text-black hover:text-blue-500 flex justify-center items-center border border-black hover:border-blue-500 rounded transition-colors duration-200">
+              <ArrowSquareRightIcon size={27} />
+            </Link>
+          )}
         </div>
+
         <div className='flex items-center gap-2'>
-            <p className='text-gray-600 font-medium mt-2'>Page {currentPage} of {totalPages}</p>
+            <p className='text-gray-600 font-medium mt-2 text-sm md:text-base'>Page <span className='font-bold text-blue-600'>{currentPage}</span> of <span className='font-bold text-blue-600'>{totalPages}</span></p>
           </div>
       </div>
     </>

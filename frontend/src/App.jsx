@@ -7,6 +7,7 @@ import CategoryPostShow from './assets/pages/show/CategoryPostShow.jsx';
 import PostDetail from './assets/pages/show/PostDetail.jsx';
 import AuthorPostShow from './assets/pages/show/AuthorPostShow.jsx';
 import SearchPage from './assets/pages/main/Search.jsx';
+import ErrorPage from './assets/pages/errors/error.jsx';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             <Route path="/author/:id/posts" element={<AuthorPostShow />} />
             <Route path="/post/:id" element={<PostDetail />} />
             <Route path="/search" element={<SearchPage />} />
+
+            {/* Error Page Handler */}
+            <Route path="*" element={<ErrorPage code={404} message="Page Not Found" />} />
           </Routes>
         </main>
       </div>
