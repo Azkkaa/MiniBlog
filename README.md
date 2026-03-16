@@ -1,4 +1,6 @@
-# MiniBlog
+<div align="center">
+  <h1>📃 MiniBlog 📃</h1>
+</div>
 
 MiniBlog is a simple fullstack project built using Laravel as a REST API backend and React (Vite) as a Single Page Application (SPA) frontend.
 
@@ -6,20 +8,30 @@ This project focuses on implementing SPA behavior in React, where page transitio
 
 ---
 
+<div align="center">
+
 ## 🚀 Tech Stack
 
 ### Backend
 
-- Laravel 12
-- Resource Controller
-- API Resource
-- MySQL
+![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+
+**Version Details:**
+`Laravel 12+` • `Resource Controller` • `API Resource` • `MySQL`
+
+<br/>
 
 ### Frontend
 
-- React (Vite)
-- Axios
-- Tailwind CSS
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+**Version Details:**
+`React 19.2` • `Axios 1.13` • `Tailwind 4.2`
+
+</div>
 
 ---
 
