@@ -41,7 +41,7 @@ function PostList () {
   return (
     <div className='pt-[65px] bg-gray-200 min-h-screen px-3 md:px-5 md:pb-10 pb-5'>
       <div className='bg-white text-gray-900'>
-        <header className='mt-5 md:mt-10 p-3 md:p-7 flex justify-between items-center'>
+        <header className='mt-5 md:mt-10 py-3 md:py-7 flex flex-col items-center'>
           <div>
             <h1 className='text-xl md:text-[26px] font-bold underline underline-offset-2'>Post Page</h1>
             <p className='text-[12px] md:text-base italic font-medium text-gray-500'>Total of <span className='font-bold text-gray-700'>{totalPosts}</span> Post</p>

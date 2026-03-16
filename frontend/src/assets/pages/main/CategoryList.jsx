@@ -22,7 +22,7 @@ const CategoryList = () => {
     <div className="px-6 bg-gray-200 min-h-screen pt-[65px]">
       <div className='bg-white'>
 
-        <header className='mb-0 md:mb-5 mt-5 md:mt-10 p-3 md:p-7'>
+        <header className='mb-0 md:mb-5 mt-5 md:mt-10 py-3 md:py-7 flex flex-col items-center'>
           <h1 className='text-xl md:text-[26px] font-bold underline underline-offset-2'>Category Page</h1>
         </header>
 

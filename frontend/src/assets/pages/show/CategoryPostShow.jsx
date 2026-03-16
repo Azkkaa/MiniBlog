@@ -38,7 +38,7 @@ const CategoryShow = () => {
   return (
       <div className='pt-[65px] bg-gray-200 min-h-screen px-5 pb-10'>
           <div className='bg-white text-gray-900'>
-              <header className='mt-5 md:mt-10 p-3 md:p-7'>
+              <header className='mt-5 md:mt-10 py-3 md:py-7 flex flex-col items-center'>
                   <h1 className='text-xl md:text-[26px] font-bold '>Category : <span className='underline'>{Text.prototype.ucfirst(category)}</span></h1>
                   <p className='text-[12px] md:text-base italic font-medium text-gray-500 mt-2'>Category <span className='underline text-gray-700'>{Text.prototype.ucfirst(category)}</span> has <span className='font-bold text-gray-700'>{totalCategoryPosts}</span> Post</p>
               </header>

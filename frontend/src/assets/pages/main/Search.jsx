@@ -10,16 +10,17 @@ function showData(posts) {
         <div>
           {posts.map((post) => (
             <div key={post.id} className='p-5 border-t border-gray-500'>
-                <h2 className='text-lg font-semibold'>{post.title}</h2>
+                <h2 className='text-[19px] font-semibold md:text-[20px]'>{post.title}</h2>
 
-                <p className='mt-1 font-semibold'>
+                <p className='mt-1 font-semibold md:text-base text-sm'>
                     {post.content}
                     <Link to={`/post/${post.id}`} className='text-blue-600 hover:underline ml-2'>Read More</Link>
                 </p>
 
-                <p className='mt-3 font-semibold text-[15px] text-gray-600'>
-                  Author : <Link to={`/author/${post.relations.user.id}/posts`} className='text-blue-600 hover:underline ml-1'>{post.relations.user.name}</Link>
-                </p>
+                <div className='flex flex-col md:flex-row justify-between font-semibold text-gray-600 mt-3 text-[13px]'>
+                  <p>Author : <Link to={`/author/${post.relations.user.id}/posts`} className='text-blue-600 hover:underline ml-1'>{post.relations.user.name}</Link></p>
+                  <p>Category : <Link to={`/category/${post.relations.category.slug}/posts`} className='text-blue-600 hover:underline ml-1'>{post.relations.category.name}</Link></p>
+                </div>
             </div>
           ))}
         </div>
@@ -67,9 +68,9 @@ function Search() {
   return (
   <div className='pt-[65px] bg-gray-200 min-h-screen px-5 pb-10'>
     <div className='bg-white text-gray-900'>
-      <header className='mt-10 p-7 flex justify-between items-center'>
+      <header className='mt-10 py-3 md:py-7 flex flex-col items-center'>
         <div>
-          <h1 className='text-[26px] font-bold underline underline-offset-2'>Search Page</h1>
+          <h1 className='md:text-[26px] text-center md:text-left text-[20px] font-bold underline underline-offset-2'>Search Page</h1>
           <p className='text-sm italic font-medium text-gray-500'>Found <span className='font-bold text-gray-700'>{totalPosts}</span> similar post title</p>
         </div>
       </header>
@@ -80,7 +81,7 @@ function Search() {
             type="text"
             name="search"
             placeholder="Search..."
-            className="border border-gray-300 rounded-md px-2 py-1 w-3/4"
+            className="border border-gray-300 rounded-md px-2 py-1 w-3/4 md:text-xl text-sm"
             onChange={(e) => {
               handleSearch(e);
             }}
